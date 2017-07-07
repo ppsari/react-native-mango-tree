@@ -17,9 +17,10 @@ const initialState = {
 const treeR = (state = initialState, {type,payload}) => {
   switch (type) {
     case 'INIT_DATA':
+    alert('masuk treeR')
       return {...state,
-        treename: payload.treename,
-        username: payload.username
+        treename: payload.data.treename,
+        username: payload.data.username
       }
     case 'GET_TREE': return state;
     case 'AGING': {
