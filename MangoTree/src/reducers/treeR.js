@@ -14,14 +14,15 @@ let initialState = {
 
 
 
-const treeR = (state = initialState, {type,payload}) => {
-  alert('masuk reducer oy');
-  switch (type) {
+const treeR = (state = initialState, action) => {
+  // alert('masuk reducer oy --- lagi');
+  switch (action.type) {
     case 'INIT_DATA':
-    alert('masuk treeR');
+
+      // alert(JSON.stringify(action.payload.treename) )
       return {...state,
-        treename: payload.data.treename,
-        username: payload.data.username
+        treename: action.payload.treename,
+        username: action.payload.username
       }
     case 'GET_TREE': return state;
     case 'AGING': {
@@ -32,9 +33,9 @@ const treeR = (state = initialState, {type,payload}) => {
       };
       let alive = state.alive
       let nage = state.age + 1 ;
-      if (nage < age_die) {
-        if (nage < age_stop) nheight +=  Math.floor(Math.random() * 100) + 1;
-        if (nage >= age_mature) {
+      if (nage < state.age_die) {
+        if (nage < state.age_stop) nheight +=  Math.floor(Math.random() * 100) + 1;
+        if (nage >= state.age_mature) {
           fruit.bad += Math.floor(Math.random() * 100) + 0;
           fruit.good += Math.floor(Math.random() * 100) + 0;
         }

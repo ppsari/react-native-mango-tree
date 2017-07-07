@@ -57,14 +57,13 @@ class PlayScreen extends React.Component {
           onChangeText = {(text)=> {this.changeTreename(text)} }
         />
         <TouchableHighlight
-          onPress = { () =>
-            {
-              alert('pressed');
-              let data = {
-                username: this.state.usern,
-                treename: this.state.treen
-              }
-              this.props.setData(data);
+          onPress = { () => {
+            alert('press')
+            let data = {
+              username: this.state.usern,
+              treename: this.state.treen
+            }
+              this.props.setData(data)
               this.changeTreename('');
               this.changeUsername('');
             }
@@ -78,8 +77,10 @@ class PlayScreen extends React.Component {
 
 }
 const mapDispatchToProps = (dispatch) => {
-  alert('dispatched');
-  return { setData: (data) => dispatch(setData(data)) }
+
+  return { setData: (data) => {
+
+    return dispatch(setData(data))} }
 }
 
 export default connect(null,mapDispatchToProps)(PlayScreen);

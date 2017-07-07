@@ -1,8 +1,8 @@
 /*action> index.js*/
-const setData = (data) => dispatch => ({TYPE:'INIT_DATA'});
-const getTree = () => dispatch => ({TYPE:'GET_TREE'});
-const aging = treename => dispatch => ({TYPE:'AGING'});
-const harvest = treename => dispatch => ({TYPE:'HARVEST'});
+const setData = (data) => { alert(JSON.stringify(data)); return {type:'INIT_DATA',payload:data} };
+const getTree = () => ({type:'GET_TREE'});
+const aging = () => ({type:'AGING'});
+const harvest = () => ({type:'HARVEST'});
 
 export {
   setData,
