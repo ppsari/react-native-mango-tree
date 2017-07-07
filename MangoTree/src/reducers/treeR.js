@@ -1,5 +1,5 @@
 /* reducers > treeR */
-const initialState = {
+let initialState = {
   treename: '',
   username: '',
   fruit : { bad:0 , good:0 },
@@ -15,9 +15,10 @@ const initialState = {
 
 
 const treeR = (state = initialState, {type,payload}) => {
+  alert('masuk reducer oy');
   switch (type) {
     case 'INIT_DATA':
-    alert('masuk treeR')
+    alert('masuk treeR');
       return {...state,
         treename: payload.data.treename,
         username: payload.data.username
@@ -53,7 +54,7 @@ const treeR = (state = initialState, {type,payload}) => {
         fruit: {bad:0,good:0},
         harvested: ( state.fruit.good + state.harvested )
       }
-
+    default : alert('mampusR')
   }
   return state;
 }

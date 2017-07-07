@@ -11,48 +11,49 @@ import {
   TouchableHighlight,
   tabBarLabel
 } from 'react-native';
+
 import { connect } from 'react-redux';
-import { initData,getTree  } from '../actions'
+import { setData  } from '../actions'
 
 class PlayScreen extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      treename: '',
-      username: ''
+      treen: '',
+      usern: ''
     }
     this.changeUsername = this.changeUsername.bind(this);
     this.changeTreename = this.changeTreename.bind(this);
   }
 
-  changeUsername(text) {
-    this.setState({username:text})
+  changeUsername(user) {
+    this.setState({usern:user})
   }
 
-  changeTreename(text) {
-    this.setState({treename:text})
+  changeTreename(tree) {
+    this.setState({treen:tree})
+  }
+
+  componentDidMount() {
+    // this.props.setData = this.props.setData.bind(this);
   }
 
   render() {
-    let header_user;
-    header_user = typeof this.props.username !== 'undefined' ?
-      <Text>{this.props.username}</Text> :
-      <Text></Text>;
-
     return(
       <View>
-        {header_user}
         <Text> Welcome </Text>
         <TextInput
           editable = {true}
           maxLength = {40}
           placeholder= 'Your name'
+          value={this.state.usern}
           onChangeText = {(text)=> {this.changeUsername(text)} }
         />
         <TextInput
           editable = {true}
           maxLength = {40}
           placeholder= 'Give your tree a name'
+          value={this.state.treen}
           onChangeText = {(text)=> {this.changeTreename(text)} }
         />
         <TouchableHighlight
@@ -60,11 +61,10 @@ class PlayScreen extends React.Component {
             {
               alert('pressed');
               let data = {
-                username: this.state.username,
-                treename: this.state.treename
+                username: this.state.usern,
+                treename: this.state.treen
               }
-              alert(data)
-              this.props.initData(data);
+              this.props.setData(data);
               this.changeTreename('');
               this.changeUsername('');
             }
@@ -78,13 +78,8 @@ class PlayScreen extends React.Component {
 
 }
 const mapDispatchToProps = (dispatch) => {
-  return { initData: (data) => dispatch(initData(data)) }
+  alert('dispatched');
+  return { setData: (data) => dispatch(setData(data)) }
 }
 
-const mapStateToProps = (state) => {
-  alert(state.tree.username)
-  return { tree: state.tree }
-}
-
-
-export default connect(mapStateToProps,mapDispatchToProps)(PlayScreen);
+export default connect(null,mapDispatchToProps)(PlayScreen);
